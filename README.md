@@ -15,6 +15,7 @@ import seaborn as sns
 import calendar
 ```
 
+
 ### OVERVIEW OF DATA SET 
 1. How many rows and columns does the data set contain?
 2. What are the data types of each column? Are there any missing values?
@@ -226,14 +227,117 @@ plt.show()
 
 
 ### TOP PERFORMERS 
-```python
-# Find the top 5 tracks with the highest number of streams
-toptracks = df_spoti[['track_name', 'streams']].sort_values(by='streams', ascending=False).head(5)
+1. Which track has the highest number of streams? Display the top 5 most streamed tracks.
+2. Who are the top 5 most frequent artists based on the number of tracks in the dataset?
 
-# Display the result
+#### Top 5 Tracks with Highest Streams
+```python
+#top 5 tracks with highest number streams
+top_5_tracks = df_spoti[['track_name', 'streams']].sort_values(by='streams', ascending=False).head(5)
+
+#display result
 print("Top 5 Most Streamed Tracks:")
-print(toptracks)
+print(top_5_tracks)
 ```
+![image](https://github.com/user-attachments/assets/6d562d79-15fa-4c04-a198-3532dd4dd8a4)
+
+#### Top 5 Artists
+```python
+#top 5 artists
+```
+
+
+### TEMPORAL TRENDS
+1. Which track has the highest number of streams? Display the top 5 most streamed tracks.
+2. Who are the top 5 most frequent artists based on the number of tracks in the dataset?
+
+#### Number of tracks released per year 
+```python
+releases_per_year = df_spoti['released_year'].value_counts().sort_index()
+
+#graph and plot the trends
+plt.figure(figsize=(12, 6))
+sns.lineplot(x=releases_per_year.index, y=releases_per_year.values, color='pink')
+plt.title('Number of Tracks Released Per Year')
+plt.xlabel('Release Year')
+plt.ylabel('Number of Tracks')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/21f3e0c6-8216-488f-8c05-c8af18385850)
+
+#### Patterns for number of tracks per month
+```python
+releases_per_month = df_spoti['released_month'].value_counts().sort_index()
+
+#graph and plot the number of releases per month
+plt.figure(figsize=(12, 6))
+sns.barplot(x=releases_per_month.index, y=releases_per_month.values, color='pink')
+plt.title('Number of Tracks Released Per Month')
+plt.xlabel('Month')
+plt.ylabel('Number of Tracks')
+plt.xticks(ticks=range(12), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/ea711913-9bd1-4fbf-83e0-4bbf8aa96a45)
+
+```python
+#identify which month has the most releases
+most_releases_month = releases_per_month.idxmax()
+most_releases_count = releases_per_month.max()
+
+print(f"The month with the most releases is {most_releases_month} with {most_releases_count} tracks.")
+```
+
+
+### GENRE AND MUSIC CHARACTERISTICS
+1. Examine the correlation between streams and musical attributes like bpm, danceability_%, and energy_%. Which attributes seem to influence streams the most?
+2. Is there a correlation between danceability_% and energy_%? How about valence_% and acousticness_%?
+
+#### Correlation of "Streams" and Musical Attributes
+```python
+#obtain correlations between streams and the given musical attributrs
+correlationstreams = df_spoti[['streams', 'bpm', 'danceability_%', 'energy_%']].corr()['streams'].drop('streams')
+
+print("Correlation of Streams with Musical Attributes: \n")
+print(correlationstreams)
+```
+![image](https://github.com/user-attachments/assets/07c55a8c-2fea-48f6-950f-a491b44b748e)
+
+##### - Correlation between danceability_% and energy_%.
+##### - Correlation between valence_% and acousticness_%.
+
+```python
+#get correlation between danceability_% and energy_%
+danceability_energy_corr = df_spoti['danceability_%'].corr(df_spoti['energy_%'])
+print(f"Correlation between Danceability % and Energy %: {danceability_energy_corr:.2f}")
+
+#get correlation between valence_% and acousticness_%
+valence_acousticness_corr = df_spoti['valence_%'].corr(df_spoti['acousticness_%'])
+print(f"Correlation between Valence % and Acousticness %: {valence_acousticness_corr:.2f}")
+```
+![image](https://github.com/user-attachments/assets/c44bf432-d9df-4480-842b-e976758819c1)
+
+```python
+#graph the correlation for the attributes
+attributes = df_spoti[['streams', 'bpm', 'danceability_%', 'energy_%', 'valence_%', 'acousticness_%']]
+correlation_matrix = attributes.corr()
+
+#create and plot using heatmap to observe the correlations 
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='spring', vmin=-1, vmax=1)
+plt.title("Correlation Heatmap of Streams and the different Musical Atrributes")
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/b94d3d1a-aa8e-42c0-8ca7-c7442f7dc251)
+
+### PLATFORM POPULARITY 
+1. How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare? Which platform seems to favor the most popular tracks?
+
+### ADVANCED ANALYSIS 
+1. Based on the streams data, can you identify any patterns among tracks with the same key or mode (Major vs. Minor)?
+2. Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
+
+
 
 
 
