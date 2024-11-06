@@ -340,6 +340,32 @@ plt.show()
 ### PLATFORM POPULARITY 
 1. How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare? Which platform seems to favor the most popular tracks?
 
+```python
+#get the number of tracks from each platform
+platformcount = {
+    'Spotify Playlists': df_spoti['in_spotify_playlists'].sum(),
+    'Spotify Charts': df_spoti['in_spotify_charts'].sum(),
+    'Apple Playlists': df_spoti['in_apple_playlists'].sum()
+}
+
+#convert into dataframe for easier plotting
+platformcount_df = pd.DataFrame(list(platformcount.items()), columns=['Platform', 'Track Count'])
+
+#plot values using bar graph
+plt.figure(figsize=(13, 6))  # Increase the figure size
+bars = plt.bar(platformcount_df['Platform'], platformcount_df['Track Count'], color=['#FD349C', '#FF0000', '#43C6DB'])
+plt.title('Number of Tracks on Each Platform')
+plt.xlabel('Platform')
+plt.ylabel('Track Count')
+plt.show()
+
+#platform with the most popular tracks
+most_popular_plat = max(platformcount, key=platformcount.get)
+print(f"\nThe platform favoring the most popular tracks is {most_popular_platform} with {platform_counts[most_popular_platform]} tracks.\n")
+```
+![image](https://github.com/user-attachments/assets/7270bbb9-4871-4b8e-9d7d-f9cb98580852)
+
+
 ### ADVANCED ANALYSIS 
 1. Based on the streams data, can you identify any patterns among tracks with the same key or mode (Major vs. Minor)?
 2. Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
