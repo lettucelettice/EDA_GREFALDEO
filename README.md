@@ -7,7 +7,7 @@ The objective of this activity is to analyze and interpret streaming data from S
 ### Preprocessing of Data Set
 
 ```python
-#Import necessary libraries needed
+#import necessary libraries needed
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -134,10 +134,6 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/e045afef-504b-459a-91ce-4f9caba22920)
 
 ```python
-#trends
-```
-
-```python
 #basic outliers using basic statistics for released_year
 print(df_spoti['released_year'].describe())
 ```
@@ -186,10 +182,6 @@ plt.ylabel('Frequency')
 plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/4e0a6bc2-b74c-4377-a621-48c26d9a734d)
-
-```python
-#add trends here for artist_count
-```
 
 ```python
 #basic outliers using basic stats for artist_count
@@ -248,8 +240,15 @@ print(toptracks)
 
 #### Top 5 Artists
 ```python
-#top 5 artists
+#identify artists and arrange artist(s)_name column to corresponding row
+artists=df_spoti['artist(s)_name'].str.split(',').explode().str.strip()
+
+#display top 5 artists from the dataset
+topartists=artists.value_counts().nlargest(5)
+print("Top 5 Most Streamed Artists:")
+print(topartists)
 ```
+![image](https://github.com/user-attachments/assets/a2667d06-7c32-4bcd-a32d-9566cd2e31a7)
 
 
 ### TEMPORAL TRENDS
@@ -287,13 +286,14 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/ea711913-9bd1-4fbf-83e0-4bbf8aa96a45)
 
 ```python
-#identify which month has the most releases
+#identify month with highest releases
 most_releases_month = releases_per_month.idxmax()
-most_releases_count = releases_per_month.max()
+most_releases_count = releases_per_month[most_releases_month]
 
-print(f"The month with the most releases is {most_releases_month} with {most_releases_count} tracks.")
+#display month with highest track releases
+print(f"\n{most_releases_month} had the highest number of releases with {most_releases_count} tracks.\n")
 ```
-![image](https://github.com/user-attachments/assets/9fdc5f30-73cb-432d-a460-738f4de28191)
+![image](https://github.com/user-attachments/assets/fb6ec882-5b3b-4604-8c50-5b48ba1abf57)
 
 
 ### GENRE AND MUSIC CHARACTERISTICS
@@ -370,9 +370,35 @@ print(f"\nThe platform favoring the most popular tracks is {most_popular_platfor
 1. Based on the streams data, can you identify any patterns among tracks with the same key or mode (Major vs. Minor)?
 2. Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
 
+#### Pattern between Tracks and its distribution between Key and Mode
+```python
+#calulate tracks for key and mode
+keymode=df_spoti.groupby(['key', 'mode']).size().reset_index(name='Count')
+
+#create bar graph to differentiate the two modes (minor and major)
+plt.figure(figsize=(15, 8))
+sns.barplot(data=keymode,x='key',y='Count',hue='mode',palette='spring')
+plt.title('Key vs Mode Distribution')
+plt.xlabel('Keys')
+plt.ylabel('Track Count')
+plt.legend(title='Mode')
+
+#output the graph
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/ec3d5a28-1a4e-4720-a01d-ca32bc8146a0)
+
+#### Compare how often different Artists appear on different Playlists and Charts
+```python
+#add here
+```
 
 
+### SUMMARY
 
+
+##### Author: GREFALDEO, Lettice Hyacinth P.
+##### 2ECE-A 
 
 
 
