@@ -28,8 +28,11 @@ df_spoti
 ![image](https://github.com/user-attachments/assets/cf94792a-94d8-4adb-be31-4aacf3032992)
 
 ```python
-#add # rows and columns here
+#display number of rows and columns of the data set
+print ("Number of rows: ", df_spoti.shape[0])
+print ("Number of columns: ", df_spoti.shape[1])
 ```
+![image](https://github.com/user-attachments/assets/99d42a9a-b921-4c5f-9aa8-ea87d8da3caf)
 
 ```python
 #check initial dataset structure and data types
@@ -90,7 +93,7 @@ print("Missing values per column:\n ",df_spoti.isnull().sum())
 #handling missing values
 missing = df_spoti.isnull().sum()
 
-if missing.sum() == 0:
+if missing.sum()==0:
     print ("Missing values : 0")
 else:
     print ("Missing values: \n")
@@ -128,7 +131,7 @@ plt.xlabel('Released Year')
 plt.ylabel('Frequency')
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/b7e7342b-f576-43a4-8c07-b8bafa839302)
+![image](https://github.com/user-attachments/assets/e045afef-504b-459a-91ce-4f9caba22920)
 
 ```python
 #trends
@@ -235,11 +238,11 @@ plt.show()
 #### Top 5 Tracks with Highest Streams
 ```python
 #top 5 tracks with highest number streams
-top_5_tracks = df_spoti[['track_name', 'streams']].sort_values(by='streams', ascending=False).head(5)
+toptracks = df_spoti[['track_name', 'streams']].sort_values(by='streams', ascending=False).head(5)
 
 #display result
 print("Top 5 Most Streamed Tracks:")
-print(top_5_tracks)
+print(toptracks)
 ```
 ![image](https://github.com/user-attachments/assets/6d562d79-15fa-4c04-a198-3532dd4dd8a4)
 
@@ -255,17 +258,18 @@ print(top_5_tracks)
 
 #### Number of tracks released per year 
 ```python
-releases_per_year = df_spoti['released_year'].value_counts().sort_index()
+releasesyearly = df_spoti['released_year'].value_counts().sort_index()
 
 #graph and plot the trends
-plt.figure(figsize=(12, 6))
-sns.lineplot(x=releases_per_year.index, y=releases_per_year.values, color='pink')
+plt.figure(figsize=(20, 8))
+sns.barplot(x=releasesyearly.index, y=releasesyearly.values, color='pink')
 plt.title('Number of Tracks Released Per Year')
 plt.xlabel('Release Year')
 plt.ylabel('Number of Tracks')
+plt.xticks(rotation=45, ha='right')
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/21f3e0c6-8216-488f-8c05-c8af18385850)
+![image](https://github.com/user-attachments/assets/d5a43b42-2c14-43d2-96a0-cd75905397ea)
 
 #### Patterns for number of tracks per month
 ```python
@@ -289,6 +293,7 @@ most_releases_count = releases_per_month.max()
 
 print(f"The month with the most releases is {most_releases_month} with {most_releases_count} tracks.")
 ```
+![image](https://github.com/user-attachments/assets/9fdc5f30-73cb-432d-a460-738f4de28191)
 
 
 ### GENRE AND MUSIC CHARACTERISTICS
@@ -310,12 +315,12 @@ print(correlationstreams)
 
 ```python
 #get correlation between danceability_% and energy_%
-danceability_energy_corr = df_spoti['danceability_%'].corr(df_spoti['energy_%'])
-print(f"Correlation between Danceability % and Energy %: {danceability_energy_corr:.2f}")
+danceabilityenergy=df_spoti['danceability_%'].corr(df_spoti['energy_%'])
+print(f"Correlation between Danceability % and Energy %: {danceabilityenergy:.2f}")
 
 #get correlation between valence_% and acousticness_%
-valence_acousticness_corr = df_spoti['valence_%'].corr(df_spoti['acousticness_%'])
-print(f"Correlation between Valence % and Acousticness %: {valence_acousticness_corr:.2f}")
+valenceacousticness=df_spoti['valence_%'].corr(df_spoti['acousticness_%'])
+print(f"Correlation between Valence % and Acousticness %: {valenceacousticness:.2f}")
 ```
 ![image](https://github.com/user-attachments/assets/c44bf432-d9df-4480-842b-e976758819c1)
 
