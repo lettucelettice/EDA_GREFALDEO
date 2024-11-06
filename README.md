@@ -28,6 +28,10 @@ df_spoti
 ![image](https://github.com/user-attachments/assets/cf94792a-94d8-4adb-be31-4aacf3032992)
 
 ```python
+#add # rows and columns here
+```
+
+```python
 #check initial dataset structure and data types
 print ("Dataset shape: ", df_spoti.shape)
 df_spoti.info()
@@ -46,34 +50,32 @@ df_spoti['streams'].iloc[574]
 #convert non-numeric value to numeric value
 df_spoti['streams'] = pd.to_numeric(df_spoti['streams'], errors = 'coerce')
 
-if pd.isnull(df_spoti['streams'].iloc[574]):
-    # If it's missing, set a default or calculated value (e.g., the median of 'streams' column)
+if pd.isnull(df_spoti['streams'].iloc[574]): #if missing, store a numeric value
     df_spoti.at[574, 'streams'] = df_spoti['streams'].median()
 else:
-    # If it's not missing, store it in a variable
     streams_value_574 = df_spoti['streams'].iloc[574]
 
-print("Value at index 574 in 'streams':", df_spoti['streams'].iloc[574])
+print("Index 574 value: ", df_spoti['streams'].iloc[574])
 ```
-![image](https://github.com/user-attachments/assets/d52c2233-613d-40e2-aa32-be86129f0d5c)
+![image](https://github.com/user-attachments/assets/6102589a-862c-4ced-8aa5-2b00785df4a1)
 
 ```python
 #convert non-umeric values to numeric by removing commas and turning it into float
-df_spoti['in_deezer_playlists'] = df_spoti['in_deezer_playlists'].str.replace(",","").astype(float)
+df_spoti['in_deezer_playlists']=df_spoti['in_deezer_playlists'].str.replace(",","").astype(float)
 df_spoti['in_deezer_playlists']
 ```
 ![image](https://github.com/user-attachments/assets/ad29b2e4-f651-4938-86f0-35df3a0b1951)
 
 ```python
 #convert non-umeric values to numeric by removing commas and turning it into float
-df_spoti['in_shazam_charts'] = df_spoti['in_shazam_charts'].str.replace(",","").astype(float)
+df_spoti['in_shazam_charts']=df_spoti['in_shazam_charts'].str.replace(",","").astype(float)
 df_spoti['in_shazam_charts']
 ```
 ![image](https://github.com/user-attachments/assets/57d498c0-60e9-4a89-88b9-e1f0d4866617)
 
 ```python
 #check if data types have been converted from non-numeric to numeric 
-print ("Dataset shape: ", df_spoti.shape)
+print("Dataset shape: ", df_spoti.shape)
 df_spoti.info()
 ```
 ![image](https://github.com/user-attachments/assets/05547fca-edf9-46f3-bb47-039331145816)
@@ -106,9 +108,9 @@ df_spoti.isnull().sum()
 
 ```python
 #obtain mean, median, mode for streams
-meanstreams = df_spoti['streams'].mean()
-medianstreams = df_spoti['streams'].median()
-stdstreams = df_spoti['streams'].std()
+meanstreams=df_spoti['streams'].mean()
+medianstreams=df_spoti['streams'].median()
+stdstreams=df_spoti['streams'].std()
 
 #output the results for each given
 print("Mean of streams column: {:,.2f}".format(meanstreams))
@@ -248,8 +250,8 @@ print(top_5_tracks)
 
 
 ### TEMPORAL TRENDS
-1. Which track has the highest number of streams? Display the top 5 most streamed tracks.
-2. Who are the top 5 most frequent artists based on the number of tracks in the dataset?
+1. Analyze the trends in the number of tracks released over time. Plot the number of tracks released per year.
+2. Does the number of tracks released per month follow any noticeable patterns? Which month sees the most releases?
 
 #### Number of tracks released per year 
 ```python
