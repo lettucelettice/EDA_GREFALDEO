@@ -2,12 +2,15 @@
 EXPLORATORY DATA ANALYSIS ON SPOTIFY 2023 🎧🎶
 </h1>
 
+<p align='center'>
 This repository contains an exploratory data analysis on the most streamed spotify tracks of 2023. 
 
-### ⚡About the Project 
+    
+### ⚡About the Project
 
+The project aims to analyze and interpret an Exploratory Data Analysis (EDA) on the "Most Streamed Spotify Songs 2023" dataset. Through this analysis trends will be examined, top-performing artists and tracks are to be identified, and patterns in track popularity based on attributes like playlist appearances, streaming counts, and musical characteristics will be studeied and uncovered. 
 
-The objective of this project is to analyze and interpret streaming data from Spotify's most popular tracks in 2023 to identify trends and characteristics that contribute to track popularity.
+This analysis will involve summarizing data, visualizing key insights, and interpreting patterns to understand what factors contribute to a track's popularity on Spotify in 2023.
 
 
 ### Preprocessing of Data Set
@@ -178,13 +181,13 @@ plt.show()
 ```python
 #distribution graph for "artist_count" column
 plt.figure(figsize=(15, 6))
-sns.histplot(df_spoti['artist_count'], bins=20, kde=True, color='pink')
+sns.histplot(df_spoti['artist_count'], bins=20, color='pink')
 plt.title('Distribution of Artist Count')
 plt.xlabel('Artist Count')
 plt.ylabel('Frequency')
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/4e0a6bc2-b74c-4377-a621-48c26d9a734d)
+![image](https://github.com/user-attachments/assets/def60d13-8a49-4580-936e-3b28616b1ff0)
 
 ```python
 #basic outliers using basic stats for artist_count
@@ -410,7 +413,7 @@ artistplaylist_charts = df_spoti.groupby('artist(s)_name')[
 artists_playlist = artistplaylist_charts[['in_spotify_playlists', 'in_apple_playlists']].head(5)
 artists_chart = artistplaylist_charts[['in_spotify_charts', 'in_apple_charts']].head(5)
 
-#bar charts to displayed deside each other 
+#bar charts to be displayed beside each other 
 fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 
 #graph for apple and spotify playlist appearances
@@ -434,11 +437,8 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/d4821d82-0a33-40bd-80a7-72f4e760233e)
 
 
-### SUMMARY
-
-
-##### Author: GREFALDEO, Lettice Hyacinth P.
-##### 2ECE-A 
+#### Author: GREFALDEO, Lettice Hyacinth P.
+#### 2ECE-A 
 
 
 
