@@ -90,19 +90,16 @@ print("Missing values per column:\n ",df_spoti.isnull().sum())
 ![image](https://github.com/user-attachments/assets/d760b92a-5d9c-4779-aaf2-7ad16e96b772)
 
 ```python
-#handling missing values
+#resolve missing values per column
 missing = df_spoti.isnull().sum()
 
-if missing.sum()==0:
-    print ("Missing values : 0")
-else:
-    print ("Missing values: \n")
-    print(missing[missing>0])
+#fill in missing values
+df_spoti.fillna(0, inplace=True)
 
-#check if there are still any missing values in the data set 
-df_spoti.isnull().sum()
+#check if there are still missing values and update data set
+print("Updated missing values per column: \n", df_spoti.isnull().sum())
 ```
-![image](https://github.com/user-attachments/assets/a947543a-a335-48e5-9983-97de22c30988)
+![image](https://github.com/user-attachments/assets/db89f794-7d37-4cec-899d-6715b1ce866a)
 
 
 ### BASIC STATISTICS 
