@@ -284,14 +284,18 @@ plt.show()
 
 ```python
 #identify month with highest releases
-most_releases_month = releases_per_month.idxmax()
-most_releases_count = releases_per_month[most_releases_month]
+mostreleases_month = releases_per_month.idxmax()
+mostreleases_count = releases_per_month[most_releases_month]
+
+#convert month number to name 
+month_name = calendar.month_name[most_releases_month]
 
 #display month with highest track releases
-print(f"\n{most_releases_month} had the highest number of releases with {most_releases_count} tracks.\n")
+print(f"\n{most_releases_month_name} had the highest number of releases with {most_releases_count} tracks.\n")
 ```
-![image](https://github.com/user-attachments/assets/fb6ec882-5b3b-4604-8c50-5b48ba1abf57)
-
+```bash
+January had the highest number of releases with 134 tracks.
+```
 
 ### GENRE AND MUSIC CHARACTERISTICS
 1. Examine the correlation between streams and musical attributes like bpm, danceability_%, and energy_%. Which attributes seem to influence streams the most?
@@ -350,17 +354,22 @@ platformcount_df = pd.DataFrame(list(platformcount.items()), columns=['Platform'
 
 #plot values using bar graph
 plt.figure(figsize=(13, 6))  # Increase the figure size
-bars = plt.bar(platformcount_df['Platform'], platformcount_df['Track Count'], color=['#FD349C', '#FF0000', '#43C6DB'])
+bars = plt.bar(platformcount_df['Platform'], platformcount_df['Track Count'], color=['#FD349C', '#FF0000', 'orange'])
 plt.title('Number of Tracks on Each Platform')
 plt.xlabel('Platform')
 plt.ylabel('Track Count')
 plt.show()
+```
+![image](https://github.com/user-attachments/assets/cd705fae-a0b8-4947-a460-390cef9d26a9)
 
+```python
 #platform with the most popular tracks
 most_popular_plat = max(platformcount, key=platformcount.get)
-print(f"\nThe platform favoring the most popular tracks is {most_popular_platform} with {platform_counts[most_popular_platform]} tracks.\n")
+print(f"\nThe platform favoring the most popular tracks is {most_popular_plat} with {platformcount[most_popular_plat]} tracks.\n")
 ```
-![image](https://github.com/user-attachments/assets/7270bbb9-4871-4b8e-9d7d-f9cb98580852)
+```bash
+The platform favoring the most popular tracks is Spotify Playlists with 4955719 tracks.
+```
 
 
 ### ADVANCED ANALYSIS 
@@ -374,7 +383,7 @@ keymode=df_spoti.groupby(['key', 'mode']).size().reset_index(name='Count')
 
 #create bar graph to differentiate the two modes (minor and major)
 plt.figure(figsize=(15, 8))
-sns.barplot(data=keymode,x='key',y='Count',hue='mode',palette='spring')
+sns.barplot(data=keymode,x='key',y='Count',hue='mode',palette=['pink', 'lightcoral'])
 plt.title('Key vs Mode Distribution')
 plt.xlabel('Keys')
 plt.ylabel('Track Count')
@@ -383,12 +392,40 @@ plt.legend(title='Mode')
 #output the graph
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/ec3d5a28-1a4e-4720-a01d-ca32bc8146a0)
+![image](https://github.com/user-attachments/assets/3c50b769-e86d-4f2c-9121-ae91c446f0a3)
+
 
 #### Compare how often different Artists appear on different Playlists and Charts
 ```python
-#add here
+artistplaylist_charts = df_spoti.groupby('artist(s)_name')[
+    ['in_spotify_playlists', 'in_apple_playlists', 'in_spotify_charts', 'in_apple_charts']].sum().sort_values(by='in_spotify_playlists', ascending=False)
+
+#get top 5 artists with highest playlist and chart apeearances
+artists_playlist = artistplaylist_charts[['in_spotify_playlists', 'in_apple_playlists']].head(5)
+artists_chart = artistplaylist_charts[['in_spotify_charts', 'in_apple_charts']].head(5)
+
+#bar charts to displayed deside each other 
+fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+#graph for apple and spotify playlist appearances
+artists_playlist.plot(kind='bar', color=['pink', 'lightcoral'], ax=axes[0])
+axes[0].set_title('Top 5 Artists by Playlist Appearances')
+axes[0].set_xlabel('Artist')
+axes[0].set_ylabel('Playlist Appearances')
+axes[0].tick_params(axis='x', rotation=0)
+
+#graph for apple and spotify chart appearances
+artists_chart.plot(kind='bar', color=['pink', 'lightcoral'], ax=axes[1])
+axes[1].set_title('Top 5 Artists by Chart Appearances')
+axes[1].set_xlabel('Artist')
+axes[1].set_ylabel('Chart Appearances')
+axes[1].tick_params(axis='x', rotation=0)
+
+#display the two graphs
+plt.tight_layout()
+plt.show()
 ```
+![image](https://github.com/user-attachments/assets/d4821d82-0a33-40bd-80a7-72f4e760233e)
 
 
 ### SUMMARY
