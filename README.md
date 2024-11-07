@@ -3,7 +3,7 @@ EXPLORATORY DATA ANALYSIS ON SPOTIFY 2023 🎧🎶
 </h1>
 
 <p align='center'>
-This repository contains an exploratory data analysis on the most streamed spotify tracks of 2023. 
+This repository contains an exploratory data analysis on the top streamed spotify tracks of 2023. 
 
     
 ### ⚡About the Project
