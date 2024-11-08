@@ -111,7 +111,7 @@ print("Updated missing values per column: \n", df_spoti.isnull().sum())
 ![image](https://github.com/user-attachments/assets/db89f794-7d37-4cec-899d-6715b1ce866a)
 
 #### Insights: 
-#### There are 953 rows and 24 columns found in the data set. 3 columns have the *float* data type, 4 coulmns have the *object* data type, and the last 17 coulmns have the *int* data type. Missing values were found at the "in_chazam_counts" column with 50 missing values and "key" column with 95 missing values. 
+#### There are 953 rows and 24 columns found in the data set. 3 columns have the *float* data type, 4 coulmns have the *object* data type, and the last 17 coulmns have the *int* data type. Missing values were found at the "in_shazam_counts" column with 50 missing values and "key" column with 95 missing values. 
 
 
 ### 📊 BASIC STATISTICS 
