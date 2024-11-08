@@ -134,7 +134,7 @@ print("Standard Deviation of streams column:{:,.2f} ".format(stdstreams))
 ```python
 #distribution graph for "released year" column
 plt.figure(figsize=(20, 6))
-sns.histplot(df_spoti['released_year'], bins=94, kde=True, color='pink')
+sns.histplot(df_spoti['released_year'], bins=94, color='pink')
 plt.title('Distribution of Released Year')
 plt.xlabel('Released Year')
 plt.ylabel('Frequency')
