@@ -13,7 +13,7 @@ The project aims to analyze and interpret an Exploratory Data Analysis (EDA) on 
 This analysis will involve summarizing data, visualizing key insights, and interpreting patterns to understand what factors contribute to a track's popularity on Spotify in 2023.
 
 
-### Preprocessing of Data Set
+### 🔃 Preprocessing of Data Set
 
 ```python
 #import necessary libraries needed
@@ -25,7 +25,7 @@ import calendar
 ```
 
 
-### OVERVIEW OF DATA SET 
+### 📄 OVERVIEW OF DATA SET 
 1. How many rows and columns does the data set contain?
 2. What are the data types of each column? Are there any missing values?
 
@@ -111,7 +111,7 @@ print("Updated missing values per column: \n", df_spoti.isnull().sum())
 ![image](https://github.com/user-attachments/assets/db89f794-7d37-4cec-899d-6715b1ce866a)
 
 
-### BASIC STATISTICS 
+### 📊 BASIC STATISTICS 
 1. What are the mean, median, and standard deviation of the streams column?
 2. What is the distribution of released_year and artist_count? Are there any noticeable trends or outliers?
 
@@ -229,7 +229,7 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/b29bbccb-6774-4d0c-b2f3-40dd1b4b3276)
 
 
-### TOP PERFORMERS 
+### 🎤 TOP PERFORMERS 
 1. Which track has the highest number of streams? Display the top 5 most streamed tracks.
 2. Who are the top 5 most frequent artists based on the number of tracks in the dataset?
 
@@ -257,7 +257,7 @@ print(topartists)
 ![image](https://github.com/user-attachments/assets/a2667d06-7c32-4bcd-a32d-9566cd2e31a7)
 
 
-### TEMPORAL TRENDS
+### 📈 TEMPORAL TRENDS
 1. Analyze the trends in the number of tracks released over time. Plot the number of tracks released per year.
 2. Does the number of tracks released per month follow any noticeable patterns? Which month sees the most releases?
 
@@ -306,7 +306,7 @@ print(f"\n{most_releases_month_name} had the highest number of releases with {mo
 January had the highest number of releases with 134 tracks.
 ```
 
-### GENRE AND MUSIC CHARACTERISTICS
+### 🎼 GENRE AND MUSIC CHARACTERISTICS
 1. Examine the correlation between streams and musical attributes like bpm, danceability_%, and energy_%. Which attributes seem to influence streams the most?
 2. Is there a correlation between danceability_% and energy_%? How about valence_% and acousticness_%?
 
@@ -347,7 +347,7 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/b94d3d1a-aa8e-42c0-8ca7-c7442f7dc251)
 
-### PLATFORM POPULARITY 
+### 📲 PLATFORM POPULARITY 
 1. How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare? Which platform seems to favor the most popular tracks?
 
 ```python
@@ -381,7 +381,7 @@ The platform favoring the most popular tracks is Spotify Playlists with 4955719 
 ```
 
 
-### ADVANCED ANALYSIS 
+### 🔎 ADVANCED ANALYSIS 
 1. Based on the streams data, can you identify any patterns among tracks with the same key or mode (Major vs. Minor)?
 2. Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
 
