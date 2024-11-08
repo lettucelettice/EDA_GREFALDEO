@@ -110,6 +110,9 @@ print("Updated missing values per column: \n", df_spoti.isnull().sum())
 ```
 ![image](https://github.com/user-attachments/assets/db89f794-7d37-4cec-899d-6715b1ce866a)
 
+#### Insights: 
+#### There are 953 rows and 24 columns found in the data set. 3 columns have the *float* data type, 4 coulmns have the *object* data type, and the last 17 coulmns have the *int* data type. Missing values were found at the "in_chazam_counts" column with 50 missing values and "key" column with 95 missing values. 
+
 
 ### 📊 BASIC STATISTICS 
 1. What are the mean, median, and standard deviation of the streams column?
@@ -228,6 +231,9 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/b29bbccb-6774-4d0c-b2f3-40dd1b4b3276)
 
+#### Insights:
+#### The mean of the dataset is 513,902,790.62, the median is 290,530,915.00, and the standard deviation is 566,605,452.04. The frequency of track releases was highest from 2019 to the present. Most artists in the dataset appear only once.
+
 
 ### 🎤 TOP PERFORMERS 
 1. Which track has the highest number of streams? Display the top 5 most streamed tracks.
@@ -244,7 +250,7 @@ print(toptracks)
 ```
 ![image](https://github.com/user-attachments/assets/6d562d79-15fa-4c04-a198-3532dd4dd8a4)
 
-#### Top 5 Artists
+#### Top 5 Most Streamed Artists
 ```python
 #identify artists and arrange artist(s)_name column to corresponding row
 artists=df_spoti['artist(s)_name'].str.split(',').explode().str.strip()
@@ -255,6 +261,9 @@ print("Top 5 Most Streamed Artists:")
 print(topartists)
 ```
 ![image](https://github.com/user-attachments/assets/a2667d06-7c32-4bcd-a32d-9566cd2e31a7)
+
+#### Insights:
+#### The *Top 5 Most Streamed Tracks* are Blinding Lights, Shape of You, Someone You Loved, Dance Monkey, and Sunflower. Blinding Lights by the Weeknd was identified as the *Top Streamed Track of 2023*. The *Top 5 Most Streamed Artists* are Bad Bunny, Taylor Swift, The Weeknd, SZA, and Kendrick Lamar. Bad Bunny was found to be the *Top Streamed Artist of 2023*.
 
 
 ### 📈 TEMPORAL TRENDS
@@ -306,6 +315,10 @@ print(f"\n{most_releases_month_name} had the highest number of releases with {mo
 January had the highest number of releases with 134 tracks.
 ```
 
+#### Insights:
+#### The trend in the data and graph shows that the number of tracks release per year has grown starting from the year 2019 to present, with 2022 as the highest year for track releases. As for monthly releases, the month of January was identified as the month with the most track releases with 134 tracks.
+
+
 ### 🎼 GENRE AND MUSIC CHARACTERISTICS
 1. Examine the correlation between streams and musical attributes like bpm, danceability_%, and energy_%. Which attributes seem to influence streams the most?
 2. Is there a correlation between danceability_% and energy_%? How about valence_% and acousticness_%?
@@ -347,6 +360,10 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/b94d3d1a-aa8e-42c0-8ca7-c7442f7dc251)
 
+#### Insights:
+#### The correlation analysis shows that there is a very weak negative correlation between streams and musical attributes like bpm, danceability_%, and energy_%, indicating these factors have little influence on a song's popularity on Spotify. Other, non-musical attributes likely play a more significant role in driving streams. Additionally, there is a weak positive correlation between danceability_% and energy_%, suggesting a slight tendency for high-energy songs to be more danceable. A very weak negative correlation exists between valence_% and acousticness_%, indicating that happier songs may have slightly less acoustic content. 
+
+
 ### 📲 PLATFORM POPULARITY 
 1. How do the numbers of tracks in spotify_playlists, spotify_charts, and apple_playlists compare? Which platform seems to favor the most popular tracks?
 
@@ -379,6 +396,9 @@ print(f"\nThe platform favoring the most popular tracks is {most_popular_plat} w
 ```bash
 The platform favoring the most popular tracks is Spotify Playlists with 4955719 tracks.
 ```
+
+#### Insights:
+#### The platform with the most tracks is Spotify Playlists, which has 4,955,719 tracks. App usability and its user-friendliness may be factors that contribute to this platform having the highest number of tracks.
 
 
 ### 🔎 ADVANCED ANALYSIS 
@@ -436,13 +456,11 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/d4821d82-0a33-40bd-80a7-72f4e760233e)
 
+#### Insights:
+#### Based on the graph, the most commonly used *Key and Mode* in the tracks is C# Major. The Top Artist that had *most playlist appearances* was The Weeknd, obtaining over 140,000 track appearances in Spotify Playlists. While, Taylor Swift was the artist that had the *most chart appearances*, obtaining over 1,750 Chart Appearances in Apple Charts.
+
 
 #### Author: GREFALDEO, Lettice Hyacinth P.
-#### 2ECE-A 
-
-
-
-
 
 
 
